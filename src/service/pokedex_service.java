@@ -25,7 +25,8 @@ public class pokedex_service {
 
     public void crearpokedexQuery(Integer id, String nome, String misc, double peso) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            Transaction transaction = session.beginTransaction();            List<pokedex_Model> pokedex = session.createQuery("INSERT into Pokedex (nome,misc,peso) Value (?,?,?)", Gatos.class)
+            session.beginTransaction();
+            List<pokedex_Model> pokedex = session.createQuery("INSERT INTO pokedex (id, nome,misc,peso) VALUES (?,?,?,?)", pokedex_Model.class);
             pokedex_Model pokemon = new pokedex_Model();
             pokemon.setId(id);
             pokemon.setNome(nome);
